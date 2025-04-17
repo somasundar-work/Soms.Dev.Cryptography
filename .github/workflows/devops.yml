@@ -1,0 +1,103 @@
+name: CI/CD DevOps Pipeline
+description: "CI/CD pipeline for Cryptography repository"
+
+on:
+    push:
+        paths:
+            - "src/**"
+    pull_request:
+        paths:
+            - "src/**"
+        branches:
+            - main
+            - release/**
+    workflow_dispatch:
+
+jobs:
+    Checks:
+        if: ${{ github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/release/') || startsWith(github.ref, 'refs/pull/') }}
+        name: Checks
+        uses: ./.github/workflows/check.yml
+
+    CI:
+        name: Build & Test
+        uses: ./.github/workflows/CI.yml
+
+    CD:
+        needs: [Checks, CI]
+        if: ${{ github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/release/') }}
+        name: Deployment
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: src
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+
+            - name: Setup .NET
+              uses: actions/setup-dotnet@v4
+              with:
+                  dotnet-version: "8.0.x"
+
+            - name: Print Date Time
+              run: date
+
+            - name: Determine Build Version
+              id: versioning
+              run: |
+                  VERSION=$(date +'%y%m.%d')
+                  VERSION="${VERSION}.${{ github.run_number }}"
+
+                  if [[ "${GITHUB_REF##*/}" != "main" ]]; then
+                    VERSION="$VERSION-preview"
+                  fi
+
+                  echo $VERSION
+
+                  echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+                  echo "tag=v$VERSION" >> "$GITHUB_OUTPUT"
+
+            - name: Current Directory
+              run: pwd
+
+            - name: Restore
+              run: dotnet restore
+
+            - name: Build
+              run: dotnet build --configuration Release --no-restore
+
+            - name: Pack Package
+              run: |
+                  dotnet pack ./src/Soms.Dev.Cryptography --configuration Release -o ./nupkg /p:PackageVersion=${{ steps.versioning.outputs.version }}
+
+            - name: Published Packages
+              run: |
+                  echo "Packages in ./nupkg:"
+                  for file in ./nupkg/*; do
+                    echo "  - $file"
+                  done
+
+            # - name: Push to NuGet
+            #   run: dotnet nuget push ./nupkg/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+
+            # - name: Push to GitHub Packages
+            #   run: dotnet nuget push ./nupkg/*.nupkg --source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" --api-key ${{ secrets.GITHUB_TOKEN }}
+
+            # - name: Tag Release
+            #   run: |
+            #       git config user.name "github-actions"
+            #       git config user.email "github-actions@github.com"
+            #       git tag ${{ steps.versioning.outputs.tag }}
+            #       git push origin ${{ steps.versioning.outputs.tag }}
+
+            # - name: Create GitHub Release
+            #   uses: softprops/action-gh-release@v2
+            #   with:
+            #       tag_name: ${{ steps.versioning.outputs.tag }}
+            #       name: Release ${{ steps.versioning.outputs.version }}
+            #       files: ./nupkg/*.nupkg
+            #   env:
+            #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

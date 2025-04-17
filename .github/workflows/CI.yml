@@ -1,0 +1,41 @@
+name: CI Pipeline
+
+on:
+    workflow_call:
+        inputs:
+            run_only_tests:
+                description: "Run only tests"
+                required: false
+                type: boolean
+                default: false
+
+jobs:
+    build-test:
+        name: 🧪 Build & Test
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: src
+        steps:
+            - uses: actions/checkout@v3
+
+            - name: Setup .NET
+              uses: actions/setup-dotnet@v4
+              with:
+                  dotnet-version: "8.0.x"
+
+            - name: Current Directory
+              run: pwd
+
+            - name: List Folders and Files in Current Directory
+              run: ls
+
+            - name: Restore
+              run: dotnet restore
+
+            - name: Build
+              run: dotnet build --configuration Release --no-restore
+
+            - name: Test with Coverage
+              run: |
+                  dotnet test --configuration Release --no-build --verbosity normal
