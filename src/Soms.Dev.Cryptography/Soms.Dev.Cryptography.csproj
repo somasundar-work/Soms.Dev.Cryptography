@@ -4,6 +4,23 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <RootNamespace>Soms.Dev.Cryptography</RootNamespace>
+    <PackageId>Soms.Dev.Cryptography</PackageId>
+    <Authors>somasundar</Authors>
+    <Company>somasundar-work</Company>
+    <Description>Lightweight feature flag toggle system for .NET </Description>
+    <PackageTags>feature-flags toggles .net</PackageTags>
+    <RepositoryUrl>https://github.com/somasundar-work/Soms.Dev.Cryptography.git</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryType>git</RepositoryType>
+    <Authors>somasundar</Authors>
+    <Company>somasundar-work</Company>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageOutputPath>../nupkgs</PackageOutputPath>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
+  
 </Project>
