@@ -7,9 +7,6 @@ jobs:
     lint:
         name: 🧹 Lint / Format Check (CSharpier)
         runs-on: ubuntu-latest
-        defaults:
-            run:
-                working-directory: src
         steps:
             - name: Checkout Repository
               uses: actions/checkout@v3
@@ -28,9 +25,6 @@ jobs:
     static-analysis:
         name: 🔍 Static Code Analysis
         runs-on: ubuntu-latest
-        defaults:
-            run:
-                working-directory: src
         steps:
             - uses: actions/checkout@v3
 
@@ -40,9 +34,6 @@ jobs:
     security-scan:
         name: 🔐 Security Vulnerability Scan
         runs-on: ubuntu-latest
-        defaults:
-            run:
-                working-directory: src
         steps:
             - uses: actions/checkout@v3
 

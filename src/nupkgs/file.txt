@@ -1,1 +1,0 @@
-This empty file to configure folder for nuget packages on build
