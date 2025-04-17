@@ -28,9 +28,6 @@ jobs:
         if: ${{ github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/release/') }}
         name: Deployment
         runs-on: ubuntu-latest
-        defaults:
-            run:
-                working-directory: src
         steps:
             - name: Checkout Code
               uses: actions/checkout@v4
