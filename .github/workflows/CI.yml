@@ -24,6 +24,12 @@ jobs:
               with:
                   dotnet-version: "8.0.x"
 
+            - name: Current Directory
+              run: pwd
+
+            - name: List Folders and Files in Current Directory
+              run: ls
+
             - name: Restore
               run: dotnet restore
 
