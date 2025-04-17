@@ -16,7 +16,7 @@
     <Authors>somasundar</Authors>
     <Company>somasundar-work</Company>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageOutputPath>../nupkgs</PackageOutputPath>
+    <PackageOutputPath>./nupkgs</PackageOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
