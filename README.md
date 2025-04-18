@@ -7,6 +7,30 @@ Soms.Dev.Cryptography is a library designed to simplify the implementation of se
 -   Hashing and Verification
 -   Encryption and Decryption
 
+## Releases
+
+-   **Soms.Dev.Cryptography**: [![NuGet Core](https://img.shields.io/nuget/v/Soms.Dev.Cryptography.svg)](https://www.nuget.org/packages/Soms.Dev.Cryptography)
+
+### Build and Issues:
+
+[![Build Status](https://github.com/somasundar-work/Soms.Dev.Cryptography/actions/workflows/devops.yml/badge.svg)](https://github.com/somasundar-work/Soms.Dev.Cryptography/actions/workflows/devops.yml)
+[![GitHub Packages](https://img.shields.io/github/v/release/somasundar-work/Soms.Dev.Cryptography?label=GitHub%20Packages)](https://github.com/somasundar-work/Soms.Dev.Cryptography/packages)
+[![Issues](https://img.shields.io/github/issues/somasundar-work/Soms.Dev.Cryptography)](https://github.com/somasundar-work/Soms.Dev.Cryptography/issues)
+
+### Sonar Analysis
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=somasundar-work_Soms.Dev.Cryptography&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=somasundar-work_Soms.Dev.Cryptography)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=somasundar-work_Soms.Dev.Cryptography&metric=bugs)](https://sonarcloud.io/summary/new_code?id=somasundar-work_Soms.Dev.Cryptography)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=somasundar-work_Soms.Dev.Cryptography&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=somasundar-work_Soms.Dev.Cryptography)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=somasundar-work_Soms.Dev.Cryptography&metric=coverage)](https://sonarcloud.io/summary/new_code?id=somasundar-work_Soms.Dev.Cryptography)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=somasundar-work_Soms.Dev.Cryptography&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=somasundar-work_Soms.Dev.Cryptography)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=somasundar-work_Soms.Dev.Cryptography&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=somasundar-work_Soms.Dev.Cryptography)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=somasundar-work_Soms.Dev.Cryptography&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=somasundar-work_Soms.Dev.Cryptography)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=somasundar-work_Soms.Dev.Cryptography&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=somasundar-work_Soms.Dev.Cryptography)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=somasundar-work_Soms.Dev.Cryptography&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=somasundar-work_Soms.Dev.Cryptography)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=somasundar-work_Soms.Dev.Cryptography&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=somasundar-work_Soms.Dev.Cryptography)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=somasundar-work_Soms.Dev.Cryptography&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=somasundar-work_Soms.Dev.Cryptography)
+
 ## Installation
 
 ### .NET Core Library
@@ -37,14 +61,6 @@ Console.WriteLine($"Hash: {hash}, Salt: {salt}");
 bool isValid = passwordHasher.VerifyPassword("my-secure-password", hash, salt);
 Console.WriteLine($"Password is valid: {isValid}");
 ```
-
-## Releases
-
--   **Soms.Dev.Cryptography**: [![NuGet Core](https://img.shields.io/nuget/v/Soms.Dev.Cryptography.svg)](https://www.nuget.org/packages/Soms.Dev.Cryptography)
-
-### Build and Issues:
-
-![codecov](https://codecov.io/gh/YOUR_USERNAME/YOUR_REPO/branch/main/graph/badge.svg) [![Build Status](https://github.com/somasundar-work/Soms.Dev.Cryptography/actions/workflows/devops.yml/badge.svg)](https://github.com/somasundar-work/Soms.Dev.Cryptography/actions/workflows/devops.yml) [![GitHub Packages](https://img.shields.io/github/v/release/somasundar-work/Soms.Dev.Cryptography?label=GitHub%20Packages)](https://github.com/somasundar-work/Soms.Dev.Cryptography/packages) [![Issues](https://img.shields.io/github/issues/somasundar-work/Soms.Dev.Cryptography)](https://github.com/somasundar-work/Soms.Dev.Cryptography/issues)
 
 ## Getting Started
 
