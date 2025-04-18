@@ -1,9 +1,11 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Soms.Dev.Cryptography;
 
+[ExcludeFromCodeCoverage]
 public static class PasswordFactoryServiceCollectionExtensions
 {
     public static IServiceCollection AddPasswordHashing(this IServiceCollection services)
