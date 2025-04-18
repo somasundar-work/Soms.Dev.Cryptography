@@ -23,7 +23,7 @@ dotnet add package Soms.Dev.Cryptography
 
 ### Build and Issues:
 
-![codecov](https://codecov.io/gh/YOUR_USERNAME/YOUR_REPO/branch/main/graph/badge.svg) [![Build Status](https://github.com/somasundar-work/Soms.Dev.Cryptography/actions/workflows/devops.yml/badge.svg)](https://github.com/somasundar-work/Soms.Dev.Cryptography/actions/workflows/devops.yml) [![GitHub Packages](https://img.shields.io/github/v/release/somasundar-work/Soms.Dev.Cryptography?label=GitHub%20Packages)](https://github.com/somasundar-work/Soms.Dev.Cryptography/packages) [![Issues](https://img.shields.io/github/issues/somasundar-work/Soms.Dev.Cryptography)](https://github.com/somasundar-work/Soms.Dev.Cryptography/issues)
+[![Build Status](https://github.com/somasundar-work/Soms.Dev.Cryptography/actions/workflows/devops.yml/badge.svg)](https://github.com/somasundar-work/Soms.Dev.Cryptography/actions/workflows/devops.yml) [![GitHub Packages](https://img.shields.io/github/v/release/somasundar-work/Soms.Dev.Cryptography?label=GitHub%20Packages)](https://github.com/somasundar-work/Soms.Dev.Cryptography/packages) [![Issues](https://img.shields.io/github/issues/somasundar-work/Soms.Dev.Cryptography)](https://github.com/somasundar-work/Soms.Dev.Cryptography/issues)
 
 ## Getting Started
 
