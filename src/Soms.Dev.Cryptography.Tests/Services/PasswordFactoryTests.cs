@@ -22,7 +22,7 @@ namespace Soms.Dev.Cryptography.Tests.Services
         {
             PasswordHashingOptions _options = new() { HashType = (HashType)999 };
             var _factory = new PasswordFactory(Microsoft.Extensions.Options.Options.Create(_options));
-            Assert.Throws<ArgumentException>(() => _factory.CreatePasswordHasher());
+            Assert.Throws<NotSupportedException>(() => _factory.CreatePasswordHasher());
         }
 
         [Test]

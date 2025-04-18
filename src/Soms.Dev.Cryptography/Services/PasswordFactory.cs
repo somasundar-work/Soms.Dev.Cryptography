@@ -18,7 +18,7 @@ public sealed class PasswordFactory : IPasswordFactory
         var hashType = _options.HashType;
         if (!Enum.IsDefined(typeof(HashType), hashType))
         {
-            throw new ArgumentException($"Invalid HashType configured: {hashType}");
+            throw new NotSupportedException($"Invalid HashType configured: {hashType}");
         }
 
         return CreatePasswordHasher(hashType);
@@ -29,7 +29,6 @@ public sealed class PasswordFactory : IPasswordFactory
         return hashType switch
         {
             HashType.PBKDF2 => CreatePbkdf2Hasher(),
-            _ => throw new NotSupportedException($"Hash type '{hashType}' is not supported."),
         };
     }
 
