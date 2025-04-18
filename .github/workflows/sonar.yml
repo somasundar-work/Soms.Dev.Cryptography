@@ -6,6 +6,8 @@ on:
             - main
     pull_request:
         types: [opened, synchronize, reopened]
+        branches:
+            - main
 
 jobs:
     build-and-analyze:
@@ -30,8 +32,8 @@ jobs:
             - name: Begin SonarCloud Analysis
               run: |
                   dotnet sonarscanner begin \
-                    /k:"your_project_key" \
-                    /o:"your_org_key" \
+                    /k:"somasundar-work_Soms.Dev.Cryptography" \
+                    /o:"somasundar-work" \
                     /d:sonar.token="${{ secrets.SONAR_TOKEN }}" \
                     /d:sonar.cs.opencover.reportsPaths="**/coverage.cobertura.xml"
               env:
