@@ -1,13 +1,17 @@
 name: CI Pipeline
 
 on:
+    push:
+        paths:
+            - "src/**"
+        branches-ignore:
+            - main
+    pull_request:
+        paths:
+            - "src/**"
+        branches:
+            - main
     workflow_call:
-        inputs:
-            run_only_tests:
-                description: "Run only tests"
-                required: false
-                type: boolean
-                default: false
 
 jobs:
     build-test:

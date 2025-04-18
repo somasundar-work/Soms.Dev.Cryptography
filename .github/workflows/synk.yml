@@ -1,0 +1,30 @@
+name: Snyk Security Scan
+
+on:
+    schedule:
+        - cron: "0 0 * * 0" # Every Sunday at midnight
+    workflow_dispatch:
+    push:
+        branches:
+            - main
+    pull_request:
+        branches:
+            - main
+jobs:
+    security:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+
+            - name: Set up Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: "16"
+
+            - name: Install Snyk
+              run: npm install -g snyk
+
+            - name: Run Snyk Test
+              run: snyk test

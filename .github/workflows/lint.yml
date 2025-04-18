@@ -1,0 +1,49 @@
+name: Lint / Format Check (CSharpier)
+
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+        branches:
+            - main
+    workflow_dispatch:
+        inputs:
+            format:
+                description: "Run CSharpier format"
+                default: false
+                required: false
+                type: boolean
+
+jobs:
+    lint:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v3
+
+            - name: Install .NET SDK
+              uses: actions/setup-dotnet@v3
+              with:
+                  dotnet-version: "8.0.x"
+
+            - name: Restore .NET Tools
+              run: dotnet tool restore
+
+            - name: Run CSharpier Check
+              run: dotnet csharpier --check .
+
+            - name: Run CSharpier Format
+              if: ${{ github.event.inputs.format == 'true' }}
+              run: dotnet csharpier .
+
+            - name: Commit and Push Changes
+              if: ${{ github.event.inputs.format == 'true' }}
+              run: |
+                  if [ -n "$(git status --porcelain)" ]; then
+                      git config user.name "github-actions[bot]"
+                      git config user.email "github-actions[bot]@users.noreply.github.com"
+                      git add .
+                      git commit -m "chore: apply CSharpier formatting"
+                      git push
+                  fi

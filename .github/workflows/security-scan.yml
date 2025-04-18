@@ -1,0 +1,30 @@
+name: Lint / Format Check (CSharpier)
+
+on:
+    schedule:
+        - cron: "0 0 * * 0" # Every Sunday at midnight
+    workflow_dispatch:
+    push:
+        branches:
+            - main
+    pull_request:
+        branches:
+            - main
+
+jobs:
+    security-scan:
+        name: 🔐 Security Vulnerability Scan
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+
+            - name: Setup .NET
+              uses: actions/setup-dotnet@v4
+              with:
+                  dotnet-version: "8.0.x"
+
+            - name: Restore
+              run: dotnet restore
+
+            - name: Check for Vulnerable Packages
+              run: dotnet list package --vulnerable

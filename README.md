@@ -17,6 +17,27 @@ Install the core library via NuGet:
 dotnet add package Soms.Dev.Cryptography
 ```
 
+## Usage Examples
+
+### Hashing a Password
+
+```csharp
+var builder = new ConfigurationBuilder()
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+
+IConfiguration configuration = builder.Build();
+
+var passwordFactory = new PasswordFactory(configuration);
+var passwordHasher = passwordFactory.CreateHasher();
+
+var (hash, salt) = passwordHasher.HashPassword("my-secure-password");
+Console.WriteLine($"Hash: {hash}, Salt: {salt}");
+
+bool isValid = passwordHasher.VerifyPassword("my-secure-password", hash, salt);
+Console.WriteLine($"Password is valid: {isValid}");
+```
+
 ## Releases
 
 -   **Soms.Dev.Cryptography**: [![NuGet Core](https://img.shields.io/nuget/v/Soms.Dev.Cryptography.svg)](https://www.nuget.org/packages/Soms.Dev.Cryptography)
@@ -47,6 +68,10 @@ dotnet add package Soms.Dev.Cryptography
 
 Contributions are welcome! Please open an issue or submit a pull request on [GitHub](https://github.com/somasundar-work/Soms.Dev.Cryptography).
 
+## Export Compliance
+
+This library may be subject to export control laws and regulations. Ensure compliance with applicable laws in your jurisdiction before using this library.
+
 ## License
 
-This project is licensed under the Apache License. See the [LICENSE](https://github.com/somasundar-work/Soms.Dev.Cryptography/blob/main/LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/somasundar-work/Soms.Dev.Cryptography/blob/main/LICENSE) file for more details.
