@@ -2,7 +2,10 @@
 
 ## Supported Versions
 
-| Name                  | Version | Supported |
-| --------------------- | ------- | --------- |
-| Soms.Dev.Cryptography | -       | &#9989;   |
-| Soms.Dev.Cryptography | -       | &#10060;  |
+| Version | Supported          |
+| ------- | ------------------ |
+| 1.0.0   | :white_check_mark: |
+
+## Reporting a Vulnerability
+
+If you discover a security vulnerability, please report it as soon as possible.

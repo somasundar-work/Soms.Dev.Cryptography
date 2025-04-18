@@ -14,13 +14,30 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryType>git</RepositoryType>
     <Authors>somasundar</Authors>
+    <License>MIT</License>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageVersion>1.0.0</PackageVersion>
+    <PackageReleaseNotes>
+    Initial release of Soms.Dev.Cryptography library. This version includes:
+
+    - Password hashing functionality using secure algorithms.
+    - Data encryption and decryption utilities for sensitive information.
+    - Integration with Microsoft.Extensions.Configuration and Dependency Injection.
+    - Lightweight and easy-to-use API for .NET applications.
+    </PackageReleaseNotes>
     <Company>somasundar-work</Company>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageOutputPath>$(SolutionDir)/nupkgs</PackageOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="README.md" Pack="true" PackagePath="" />
+    <None Include="../../README.md" Pack="true" PackagePath="" />
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="9.0.4" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.4" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.4" />
+  </ItemGroup>
+
   
 </Project>
