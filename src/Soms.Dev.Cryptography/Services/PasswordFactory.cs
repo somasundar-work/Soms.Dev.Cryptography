@@ -26,10 +26,7 @@ public sealed class PasswordFactory : IPasswordFactory
 
     private IPasswordHasher CreatePasswordHasher(HashType hashType)
     {
-        return hashType switch
-        {
-            HashType.PBKDF2 => CreatePbkdf2Hasher(),
-        };
+        return CreatePbkdf2Hasher();
     }
 
     private IPasswordHasher CreatePbkdf2Hasher()
