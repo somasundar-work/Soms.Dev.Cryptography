@@ -41,8 +41,8 @@ jobs:
                   dotnet sonarscanner begin \
                     /k:"somasundar-work_Soms.Dev.Cryptography" \
                     /o:"somasundar-work" \
-                    /d:sonar.token="${{ secrets.SONAR_TOKEN }}" \
-                    /d:sonar.cs.vscoveragexml.reportsPaths="**/coverage.cobertura.xml" \
+                    /d:sonar.token="${{ secrets.SONAR_TOKEN }}" \    
+                    /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml \
                     /d:sonar.exclusions="**/Soms.Dev.Cryptography.Tests/**" \
                     /d:sonar.verbose=true \
                     /d:sonar.scanner.scanAll=false
