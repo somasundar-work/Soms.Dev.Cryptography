@@ -32,6 +32,16 @@ jobs:
             - name: Add tool path to environment
               run: echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
 
+            - name: Build the project
+              run: dotnet build --no-restore --configuration Release
+
+            - name: Test with coverage
+              run: |
+                  dotnet test --configuration Release \
+                    --collect:"XPlat Code Coverage"
+                  report_path=$(find . -type f -name 'coverage.cobertura.xml' | head -n 1)
+                  echo "Coverage report found at: $report_path"
+
             - name: Begin SonarCloud Analysis
               run: |
                   dotnet sonarscanner begin \
@@ -45,13 +55,6 @@ jobs:
 
             - name: Build the project
               run: dotnet build --no-restore --configuration Release
-
-            - name: Test with coverage
-              run: |
-                  dotnet test --no-build --configuration Release \
-                    --collect:"XPlat Code Coverage"
-                  report_path=$(find . -type f -name 'coverage.cobertura.xml' | head -n 1)
-                  echo "Coverage report found at: $report_path"
 
             - name: End SonarCloud Analysis
               run: dotnet sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
