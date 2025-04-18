@@ -44,7 +44,7 @@ jobs:
                     /d:sonar.token="${{ secrets.SONAR_TOKEN }}" \
                     /d:sonar.cs.vscoveragexml.reportsPaths="coverage.xml" \
                     /d:sonar.exclusions="**/Soms.Dev.Cryptography.Tests/**" \
-                    /d:sonar.verbose=true
+                    /d:sonar.verbose=true \
                     /d:sonar.scanner.scanAll=false
               env:
                   DOTNET_SYSTEM_GLOBALIZATION_INVARIANT: true
