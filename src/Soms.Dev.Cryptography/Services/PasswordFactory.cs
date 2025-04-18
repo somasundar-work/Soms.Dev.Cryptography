@@ -4,7 +4,7 @@ using Microsoft.Extensions.Options;
 
 namespace Soms.Dev.Cryptography;
 
-public class PasswordFactory : IPasswordFactory
+public sealed class PasswordFactory : IPasswordFactory
 {
     private readonly PasswordHashingOptions? _options;
 

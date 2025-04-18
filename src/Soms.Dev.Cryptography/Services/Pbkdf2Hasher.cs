@@ -3,7 +3,7 @@ using System.Security.Cryptography;
 
 namespace Soms.Dev.Cryptography;
 
-public class Pbkdf2Hasher(
+public sealed class Pbkdf2Hasher(
     int HashSize = 32,
     int SaltSize = 16,
     int Iterations = 100_000,
