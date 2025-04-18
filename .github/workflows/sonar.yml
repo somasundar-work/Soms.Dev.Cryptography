@@ -1,0 +1,47 @@
+name: SonarCloud Analysis
+
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+        types: [opened, synchronize, reopened]
+
+jobs:
+    build-and-analyze:
+        name: Build, Test, and Analyze with SonarCloud
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Setup .NET
+              uses: actions/setup-dotnet@v4
+              with:
+                  dotnet-version: "8.x"
+
+            - name: Install dependencies
+              run: dotnet restore
+
+            - name: Install SonarScanner
+              run: dotnet tool install --global dotnet-sonarscanner
+
+            - name: Begin SonarCloud Analysis
+              run: |
+                  dotnet sonarscanner begin \
+                    /k:"your_project_key" \
+                    /o:"your_org_key" \
+                    /d:sonar.token="${{ secrets.SONAR_TOKEN }}" \
+                    /d:sonar.cs.opencover.reportsPaths="**/coverage.cobertura.xml"
+              env:
+                  DOTNET_SYSTEM_GLOBALIZATION_INVARIANT: true
+
+            - name: Test with coverage
+              run: |
+                  dotnet-coverage collect "dotnet test" -f xml -o "coverage.xml"
+                  echo "Locating coverage report..."
+                  find . -type f -name 'coverage.cobertura.xml'
+
+            - name: End SonarCloud Analysis
+              run: dotnet sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
