@@ -6,7 +6,7 @@ namespace Soms.Dev.Cryptography;
 
 public sealed class PasswordFactory : IPasswordFactory
 {
-    private readonly PasswordHashingOptions? _options;
+    private readonly PasswordHashingOptions _options;
 
     public PasswordFactory(IOptions<PasswordHashingOptions> options)
     {
@@ -15,7 +15,7 @@ public sealed class PasswordFactory : IPasswordFactory
 
     public IPasswordHasher CreatePasswordHasher()
     {
-        var hashType = _options?.HashType ?? HashType.PBKDF2;
+        var hashType = _options.HashType;
         if (!Enum.IsDefined(typeof(HashType), hashType))
         {
             throw new ArgumentException($"Invalid HashType configured: {hashType}");
@@ -24,7 +24,7 @@ public sealed class PasswordFactory : IPasswordFactory
         return CreatePasswordHasher(hashType);
     }
 
-    public IPasswordHasher CreatePasswordHasher(HashType hashType)
+    private IPasswordHasher CreatePasswordHasher(HashType hashType)
     {
         return hashType switch
         {
@@ -38,9 +38,13 @@ public sealed class PasswordFactory : IPasswordFactory
         var defaulfOptions = new Pbkdf2Options();
         var pbkdf2 = _options?.PBKDF2;
 
-        if (!Enum.TryParse<HashAlgorithmName>(pbkdf2?.HashAlgorithm, true, out var parsedHashAlgorithm))
+        HashAlgorithmName parsedHashAlgorithm = new(defaulfOptions.HashAlgorithm);
+        if (
+            !string.IsNullOrEmpty(pbkdf2?.HashAlgorithm)
+            && !HashAlgorithmName.TryFromOid(pbkdf2.HashAlgorithm, out var tempParsedHashAlgorithm)
+        )
         {
-            parsedHashAlgorithm = HashAlgorithmName.SHA256;
+            parsedHashAlgorithm = tempParsedHashAlgorithm;
         }
 
         return new Pbkdf2Hasher(

@@ -18,6 +18,8 @@ public sealed class Pbkdf2Hasher(
 
     public (string Hash, string Salt) HashPassword(string password)
     {
+        if (string.IsNullOrEmpty(password))
+            throw new ArgumentNullException(nameof(password), "Password cannot be null or empty.");
         var (hash, salt) = HashPassword(System.Text.Encoding.UTF8.GetBytes(password));
         return (Convert.ToBase64String(hash), Convert.ToBase64String(salt));
     }
@@ -34,6 +36,12 @@ public sealed class Pbkdf2Hasher(
 
     public bool VerifyPassword(string password, string hash, string salt)
     {
+        if (string.IsNullOrEmpty(password))
+            throw new ArgumentNullException(nameof(password), "Password cannot be null or empty.");
+        if (string.IsNullOrEmpty(hash))
+            throw new ArgumentNullException(nameof(hash), "Hash cannot be null or empty.");
+        if (string.IsNullOrEmpty(salt))
+            throw new ArgumentNullException(nameof(salt), "Salt cannot be null or empty.");
         return VerifyPassword(
             System.Text.Encoding.UTF8.GetBytes(password),
             Convert.FromBase64String(hash),
