@@ -38,14 +38,13 @@ jobs:
 
             - name: Begin SonarCloud Analysis
               run: |
-                  pwd
                   dotnet sonarscanner begin \
                     /k:"somasundar-work_Soms.Dev.Cryptography" \
                     /o:"somasundar-work" \
                     /d:sonar.token="${{ secrets.SONAR_TOKEN }}" \
                     /d:sonar.cs.vscoveragexml.reportsPaths="**/coverage.cobertura.xml" \
                     /d:sonar.exclusions="**/Soms.Dev.Cryptography.Tests/**" \
-                    /d:sonar.verbose=true
+                    /d:sonar.verbose=true \
                     /d:sonar.scanner.scanAll=false
               env:
                   DOTNET_SYSTEM_GLOBALIZATION_INVARIANT: true
