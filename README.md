@@ -1,3 +1,5 @@
+# This is a Test Project only for learning purposes only not for commercial use.
+
 # Cryptography
 
 Soms.Dev.Cryptography is a library designed to simplify the implementation of secure hashing, verification, encryption, and decryption in your applications. It provides robust and easy-to-use APIs to ensure data integrity and confidentiality.
