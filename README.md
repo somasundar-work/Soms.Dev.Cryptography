@@ -11,12 +11,11 @@ Soms.Dev.Cryptography is a library designed to simplify the implementation of se
 
 ## Releases
 
--   **Soms.Dev.Cryptography**: [![NuGet Core](https://img.shields.io/nuget/v/Soms.Dev.Cryptography.svg)](https://www.nuget.org/packages/Soms.Dev.Cryptography)
+-   **Soms.Dev.Cryptography**: [![GitHub Packages](https://img.shields.io/github/v/release/somasundar-work/Soms.Dev.Cryptography?label=GitHub%20Packages)](https://github.com/somasundar-work/Soms.Dev.Cryptography/packages)
 
 ### Build and Issues:
 
-[![Build Status](https://github.com/somasundar-work/Soms.Dev.Cryptography/actions/workflows/devops.yml/badge.svg)](https://github.com/somasundar-work/Soms.Dev.Cryptography/actions/workflows/devops.yml)
-[![GitHub Packages](https://img.shields.io/github/v/release/somasundar-work/Soms.Dev.Cryptography?label=GitHub%20Packages)](https://github.com/somasundar-work/Soms.Dev.Cryptography/packages)
+[![Build Status](https://github.com/somasundar-work/Soms.Dev.Cryptography/actions/workflows/CD.yml/badge.svg)](https://github.com/somasundar-work/Soms.Dev.Cryptography/actions/workflows/CD.yml)
 [![Issues](https://img.shields.io/github/issues/somasundar-work/Soms.Dev.Cryptography)](https://github.com/somasundar-work/Soms.Dev.Cryptography/issues)
 
 ### Sonar Analysis
