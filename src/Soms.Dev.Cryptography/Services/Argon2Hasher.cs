@@ -24,7 +24,10 @@ public sealed class Argon2Hasher : IPasswordHasher
         if (string.IsNullOrEmpty(password))
             throw new ArgumentNullException(nameof(password), "Password cannot be null or empty.");
 
-        byte[] salt = GenerateSalt(16);
+        using var rng = RandomNumberGenerator.Create();
+        var saltsize = _HashSize / 2;
+        byte[] salt = new byte[saltsize];
+        rng.GetBytes(salt);
         using var argon2 = new Argon2id(System.Text.Encoding.UTF8.GetBytes(password))
         {
             Iterations = _Iterations,
@@ -61,13 +64,5 @@ public sealed class Argon2Hasher : IPasswordHasher
 
         byte[] computedHash = argon2.GetBytes(_HashSize);
         return CryptographicOperations.FixedTimeEquals(hashBytes, computedHash);
-    }
-
-    private byte[] GenerateSalt(int size)
-    {
-        using var rng = RandomNumberGenerator.Create();
-        byte[] salt = new byte[size];
-        rng.GetBytes(salt);
-        return salt;
     }
 }
