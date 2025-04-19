@@ -5,10 +5,14 @@ on:
         - cron: "0 0 * * 0" # Every Sunday at midnight
     workflow_dispatch:
     push:
+        paths:
+            - "src/**"
         branches:
             - main
     pull_request:
         types: [opened, synchronize, reopened]
+        paths:
+            - "src/**"
         branches:
             - main
 

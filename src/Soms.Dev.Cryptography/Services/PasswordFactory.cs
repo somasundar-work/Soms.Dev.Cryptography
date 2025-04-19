@@ -16,17 +16,30 @@ public sealed class PasswordFactory : IPasswordFactory
     public IPasswordHasher CreatePasswordHasher()
     {
         var hashType = _options.HashType;
-        if (!Enum.IsDefined(typeof(HashType), hashType))
-        {
-            throw new NotSupportedException($"Invalid HashType configured: {hashType}");
-        }
-
         return CreatePasswordHasher(hashType);
     }
 
     private IPasswordHasher CreatePasswordHasher(HashType hashType)
     {
-        return CreatePbkdf2Hasher();
+        return hashType switch
+        {
+            HashType.Argon2 => CreateArgon2Hasher(),
+            HashType.PBKDF2 => CreatePbkdf2Hasher(),
+            _ => throw new NotSupportedException($"Hash type '{hashType}' is not supported."),
+        };
+    }
+
+    private IPasswordHasher CreateArgon2Hasher()
+    {
+        var defaultOptions = new Argon2Options();
+        var argon2 = _options?.Argon2;
+
+        return new Argon2Hasher(
+            argon2?.Iterations ?? defaultOptions.Iterations,
+            argon2?.MemorySize ?? defaultOptions.MemorySize,
+            argon2?.DegreeOfParallelism ?? defaultOptions.DegreeOfParallelism,
+            argon2?.HashSize ?? defaultOptions.HashSize
+        );
     }
 
     private IPasswordHasher CreatePbkdf2Hasher()

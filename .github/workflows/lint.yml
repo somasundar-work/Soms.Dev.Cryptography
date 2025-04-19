@@ -2,10 +2,14 @@ name: Lint / Format Check (CSharpier)
 
 on:
     push:
+        paths:
+            - "src/**"
         branches:
             - main
     pull_request:
         types: [opened, synchronize, reopened]
+        paths:
+            - "src/**"
         branches:
             - main
     workflow_dispatch:
